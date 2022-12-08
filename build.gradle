@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'jacoco'   //jacoco plugin
+}
+
+group = 'com.stackfortech'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport  //run right after ./gradlew clean build
+}
+jacocoTestReport{                 //configuration for report formats.
+	dependsOn test
+	reports {
+		xml.enabled true
+		csv.enabled true
+		html.enabled true
+	}
+	finalizedBy jacocoTestCoverageVerification  //run right after jacocoTestReport
+}
+jacocoTestCoverageVerification {   //Verifies the code coverage rule if enabled.
+	violationRules {
+		rule {
+			enabled = true
+			limit {
+				minimum = 0.25
+			}
+		}
+	}
+}
