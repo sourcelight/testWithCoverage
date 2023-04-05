@@ -8,6 +8,7 @@ public class TestWithCoverageApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TestWithCoverageApplication.class, args);
+		System.out.println("java_vers: "+System.getProperty("java.version"));
 	}
 
 }

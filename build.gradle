@@ -1,13 +1,22 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.4'
-	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
+	id 'org.springframework.boot' version '2.7.8'
+	id 'io.spring.dependency-management' version '1.1.0'
 	id 'jacoco'   //jacoco plugin
 }
 
+//apply plugin: 'io.spring.dependency-management'
+
 group = 'com.stackfortech'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+//sourceCompatibility = '1.8'
+//sourceCompatibility = '17'
+
+java{
+	toolchain{
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -26,9 +35,11 @@ test {
 jacocoTestReport{                 //configuration for report formats.
 	dependsOn test
 	reports {
-		xml.enabled true
-		csv.enabled true
-		html.enabled true
+//		xml.enabled true
+//		csv.enabled true
+		xml.required = true
+		csv.required = true
+//		html.enabled true
 	}
 	finalizedBy jacocoTestCoverageVerification  //run right after jacocoTestReport
 }
