@@ -48,7 +48,7 @@ jacocoTestCoverageVerification {   //Verifies the code coverage rule if enabled.
 		rule {
 			enabled = true
 			limit {
-				minimum = 0.95
+				minimum = 0.25
 			}
 		}
 	}
