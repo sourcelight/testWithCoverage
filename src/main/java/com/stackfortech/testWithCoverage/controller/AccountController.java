@@ -17,6 +17,7 @@ public class AccountController {
     @GetMapping("/account/{id}")
     public ResponseEntity<?> getAccountDetail(@PathVariable Long id)
     {
+        System.out.println("test");
         return accountService.findOne(id);
 
     }
